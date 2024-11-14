@@ -29,7 +29,23 @@ grid_3 = [
 ]
 # normal 9x9 sudoku
 
+u_grid = [
+    [0,0,0,0,0,0,0,0,2],
+    [1,0,3,4,0,0,0,0,5],
+    [2,0,0,0,5,0,4,0,1],
+    [3,4,0,0,0,5,0,9,0],
+    [8,0,7,0,0,0,3,0,4],
+    [0,9,0,3,0,0,0,1,7],
+    [6,0,5,0,3,0,0,0,9],
+    [4,0,0,0,0,8,7,0,2],
+    [0,0,0,1,0,0,0,0,0]
+]
+# this a sudoku with no solution as the last column has a repeated value,this is to see how the algorithms responds to unsolvable problems
+
 def print_grid(grid):
+    if(grid == None):
+        print("No found solution!")
+        return
     divisor = grid.__len__() ** 0.5
     if(divisor%1!=0):
         row_divisor = round(divisor)
@@ -51,9 +67,3 @@ def print_grid(grid):
     print(" - "*grid.__len__())
     # printing the numbers of grid list or an * where there is a 0
     # and the borders to display the sudoku in the console to the user
-
-print_grid(grid_1)
-print()
-print_grid(grid_2)
-print()
-print_grid(grid_3)
