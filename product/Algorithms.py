@@ -1,3 +1,6 @@
+from Sudoku import Sudoku, pygame, grid_1, grid_2, grid_3, u_grid
+
+sudoku = Sudoku()
 # the method containing the main backtracking algorithm
 def backtracking(grid):
     position = empty_space(grid)
@@ -6,6 +9,7 @@ def backtracking(grid):
         return grid
         # if there are no empty squares, the solution has been found and the grid is returned
     for i in range(grid.__len__()+1):
+        sudoku.update(i, position[0], position[1])
         if safe_value(grid, position, i):
             grid[position[0]][position[1]] = i
             # test a viable number in the open position
@@ -15,6 +19,7 @@ def backtracking(grid):
                 return grid
                 # if the are no empty positions, this solution is correct
         grid[position[0]][position[1]] = 0
+        sudoku.update(0, position[0], position[1])
         # if there are no viable solutions at this point, the position is reset to 0 and the algorithm backtracks
     return None
     # if there is no number that goes into the empty position, an empty grid is returned as there is no solution
@@ -59,3 +64,12 @@ def check_square(grid, row, column, value):
 def safe_value(grid, position, value):
     return check_row(grid, position[0], value) and check_column(grid, position[1], value) and check_square(grid, position[0], position[1], value)
 # simplyfies the process of checking values in the main algorithm function
+
+sudoku.draw_grid(grid_3)
+running = True
+while running:
+    for event in pygame.event.get(): 
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            backtracking(grid_3)
+        if event.type == pygame.QUIT: 
+            running = False
