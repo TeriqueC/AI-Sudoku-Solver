@@ -12,3 +12,5 @@ Once the other features of my project have become slightly more developed, I pla
 # Solving algorithms
 
 My main focus moving forwards will be to begin the implementation of some of the puzzle solving AI algorithms, i need to begin starting to take input and provide output to be displayed to the user to demonstrate using AI to solve a sudoku puzzle.
+
+need to waffle about the development of the GUI, explain the problems faced and overcame through my development.
