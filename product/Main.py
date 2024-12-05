@@ -56,9 +56,10 @@ sudoku.draw_grid(grid_3)
 running = True
 while running:
     for event in pygame.event.get(): 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            sudoku.print_grid(backtracking(grid_3, sudoku))
-        if event.type == pygame.QUIT: 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                sudoku.print_grid(backtracking(grid_3, sudoku))
+        elif event.type == pygame.QUIT: 
             running = False
 
 # a simple interface to link the printing and solving functionalities
