@@ -61,5 +61,7 @@ while running:
                 sudoku.print_grid(backtracking(grid_3, sudoku))
         elif event.type == pygame.QUIT: 
             running = False
+        elif event.type == pygame.ACTIVEEVENT:
+            continue
 
 # a simple interface to link the printing and solving functionalities
