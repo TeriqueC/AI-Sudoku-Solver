@@ -5,7 +5,7 @@ def backtracking(grid, sudoku):
     if position == None:
         return grid
         # if there are no empty squares, the solution has been found and the grid is returned
-    for i in range(grid.__len__()+1):
+    for i in range(1, grid.__len__()+1):
         sudoku.update(i, position[0], position[1])
         if safe_value(grid, position, i):
             grid[position[0]][position[1]] = i
