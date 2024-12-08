@@ -39,7 +39,7 @@ Date of Submission:
 
 \vskip3em
 
-Signature:
+Signature: \studentname
 
 \newpage
 
@@ -52,9 +52,11 @@ Signature:
 
 \begin{abstract}
 
-This document serves as a layout and formatting template for your project report. It does not tell you how to write it, or what it should contain. It explains how it should be formatted and typeset. Please refer to your project booklet for information about report sizes, contents and rules.
+  The general purpose of artificial intelligence is to give computers the ability to replicate human intelligence through the use of problem-solving algorithms. AI has the potential to outperform human intelligence in solving many different and difficult problems due to its ability to “think” by running problem solving computations at much greater speeds and accuracy than a human and it does this through leveraging the superior processing capabilities of a computer~\cite{AIforSocialGood}. 
 
-\textbf{\textit{NOTE: in your report, you should replace this with an appropriate Abstract for your project report.}}
+ 
+
+  Due to the nature of problem-solving algorithms, Artificial Intelligence is able to provide assistance and insight into many different fields of expertise making it popular and very much in demand as an asset to humanity. In order to increase the value of AI, it is necessary to deeply research ways to improve problem solving algorithms and to discover which of the algorithms works best for a specific problem, and it is also important to develop methods for humans and AI to safely interact. One way this can be achieved is through games and puzzles. Using games and puzzles as a means to research and further develop AI can be very beneficial as it allows for problem solving algorithms to be tested against fun solvable challenges which can provide insight on how well the algorithms are able to solve problems, using games can also provide a way for humans to interact with artificial intelligence through either testing the speed and efficiency of both the player and the algorithms or through the use of 2 player games like chess and checkers. This type of approach to using artificial intelligence has been seen in the past from the first working checkers program to appear in 1952~\cite{Kister1957}, and chess playing programs being developed shortly thereafter~\cite{Strachey1952} which had a role in furthering research and development of modern algorithms and uses of Artificial Intelligence. 
 
 \end{abstract}
 \newpage
@@ -70,64 +72,23 @@ Your project specification goes here.
 %%% Introduction
 \chapter{Introduction}
 
-The project report is a very important part of your project and its preparation and presentation should be of extremely high quality. Remember that a significant portion of the marks for your project are awarded for this report. 
+\section{Artificial Intelligence Solving a Sudoku}
 
-The format of the final report is fixed by the template of this document and the Department of Computer Science suggests its usage. 
+\section{Purpose of my Application}
 
-While this may sound like a rather prescriptive approach to report writing, it is introduced for the following reasons:
-\begin{enumerate}
- \item The template allows students to focus on the critical task of producing clear and concise content, instead of being distracted by font settings and paragraph spacing. 
- \item By providing a comprehensive template the Department benefits from a consistent and professional look to its internal project reports.
-\end{enumerate}
+\section{Project Milestones}
 
-The remainder of this document briefly outlines the main components and their usage.
+%%%%%%%%%%%%%%%%%%%%%%
+%%% Application Development
+\chapter{Application Development}
 
-A \textbf{final project report} is approximately 15,000 words and must include a word count. It is acceptable to have other material in appendixes.  
-Your \textbf{interim report} for the December Review meeting, even if it is a collection of reports, should have a total word count of about 5,000 words. 
-This should summarise the work you have done so far, with sections on the theory you have learnt and the code that you have written.
+\section{Development of Terminal Interface}
 
-Also remember that any details of report content and submission rules, as well as other deliverables, are defined in the project booklet~\cite{COHEN:2013}.
+\section{Development of Backtracking Algorithm}
+\subsection{What is Backtracking?}
+\subsection{Implementation of Backtracking Algorithm}
 
-\section{How to use this template}
-
-The simplest way to get started with your report is to save a copy of this document. 
-First change the values for the initial document definitions such as \verb|studentname| and \verb|reportyear| to match your details.
-Delete the unneeded sections and start adding your own sections using the styles provided.
-Before submission, remember to fill in the Declaration section fields.
-
-\chapter{Page Layout \& Size}
-
-The page size and margins have been set in this document. These should not be changed or adjusted. 
-
-In addition, page headers and footers have been included. They will be automatically filled in, so do not attempt to change their contents.
-
-\chapter{Headings}
-
-Your report will be structured as a collection of numbered sections at different levels of detail. For example, the heading to this section is a first-level heading and has been defined with a particular set of font and spacing characteristics. At the start of a new section, you need to select the appropriate \LaTeX{} command, \verb|\chapter| in this case.
-\section{Second Level Headings}
-Second level headings, like this one, are created by using the command \verb|\section|.
-\subsection{Third Level Headings}
-The heading for this subsection is a third level heading, which is obtained by using command \verb|\subsection|. In general, it is unlikely that fourth of fifth level headings will be required in your final report. Indeed it is more likely that if you do find yourself needing them, then your document structure is probably not ideal. So, try to stick to these three levels.
-\section{A Word on Numbering}
-You will notice that the main section headings in this document are all numbered in a hierarchical fashion. You don't have to worry about the numbering. It is all automatic as it has been built into the heading styles. Each time you create a new heading by selecting the appropriate style, the correct number will be assigned. 
-
-
-\chapter{Presentation Issues}
-
-\section{Figures, Charts and Tables}
-
-Most final reports will contain a mixture of figures and charts along with the main body of text. The figure caption should appear directly after the figure as seen in Figure~\ref{fig:logo} whereas a table caption should appear directly above the table. Figures, charts and tables should always be centered horizontally. 
-
-\begin{figure}[h]
-\centering
-\fboxsep 2mm
-\framebox{
-	\includegraphics[width=6cm]{logo} 
-}
-\caption{\label{fig:logo} Logo of RHUL.}
-\end{figure} 
-
-\section{Source Code}
+\section{Development of Graphical User Interface}
 
 If you wish to print a short excerpt of your source code,  ensure that you are using a fixed-width sans-serif font such as the Courier font. By using the \verb|verbatim| environment your code will be properly indented and will appear as follows:
 
@@ -143,22 +104,51 @@ static public void main(String[] args) {
 } 
 \end{verbatim}
 
-\chapter{References}
+%%%%%%%%%%%%%%%%%%%%%%
+%%% Current Progress
+\chapter{Current Progress}
 
-Use one consistent system for citing works in the body of your report. Several such systems are in common use in textbooks and in conference and journal papers. Ensure that any works you cite are listed in the references section, and vice versa. 
+\section{Application Architecture}
+\section{Running the Application}
 
-\chapter{Project Information and Rules}
+%%%%%%%%%%%%%%%%%%%%%%
+%%% Next Obectives
+\chapter{Next Objectives}
 
-The details about how your project will be assessed, as well as the rules you must follow for this final project report, are detailed in the project booklet~\cite{COHEN:2013}.
+\section{Development of Neural Network solution}
+\subsection{What is a Neural Network?}
+\subsection{How can this be Implemented into my Application?}
 
-\textbf{You must read that document and strictly follow it.}
+\section{Further Improvments planned for the GUI}
+
+Most final reports will contain a mixture of figures and charts along with the main body of text. The figure caption should appear directly after the figure as seen in Figure~\ref{fig:logo} whereas a table caption should appear directly above the table. Figures, charts and tables should always be centered horizontally. 
+
+\begin{figure}[h]
+\centering
+\fboxsep 2mm
+\framebox{
+	\includegraphics[width=6cm]{logo} 
+}
+\caption{\label{fig:logo} Logo of RHUL.}
+\end{figure} 
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% conclusion
+\chapter{Conclusion}
 
 
 %%%% ADD YOUR BIBLIOGRAPHY HERE
 \newpage
 \begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{Bibliography}
-\bibitem{COHEN:2013} Dave Cohen and Carlos Matos. \emph{Third Year Projects -- Rules and Guidelines}. Royal Holloway, University of London, 2013.
+\bibitem{AIforSocialGood} 
+AI for Social Good (n.d.). Artificial Intelligence vs. Human Intelligence: Exploring the Debate and Key Points. [online] Available at: \url{https://aiforsocialgood.ca/blog/artificial-intelligence-vs-human-intelligence-exploring-the-debate-and-key-points} [Accessed 8 Oct. 2024].
+\bibitem{Strachey1952} C. Strachey, Logical or non-mathematical programmes, in: Proc. Association for Computing Machinery Meeting, Toronto, ON, 1952, pp. 46–49. 
+\bibitem{Kister1957} J. Kister, P. Stein, S. Ulam, W. Walden, M. Wells, Experiments in chess, J. ACM 4 (1957) 174–177.
+\bibitem{GeeksforGeeks} GeeksforGeeks (n.d.). Sudoku | Backtracking-7. [online] Available at: \url{https://www.geeksforgeeks.org/sudoku-backtracking-7/} [Accessed 9 Oct. 2024]. 
+\bibitem{Simonis} Simonis, H., n.d. Constraint Programming in Action. [pdf] Available at: \url{https://ai.dmi.unibas.ch/_files/teaching/fs21/ai/material/ai26-simonis-cp2005ws.pdf} [Accessed 10 Oct. 2024]. 
+\bibitem{AkinDavid} Charles Akin-David, Richard Mantey, n.d. Solving Sudoku with Neural Networks. [pdf] Available at: \url{https://cs230.stanford.edu/files_winter_2018/projects/6939771.pdf} [Accessed 10 Oct. 2024].
+
 \end{thebibliography}
 \label{endpage}
 
