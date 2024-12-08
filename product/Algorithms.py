@@ -7,6 +7,7 @@ def backtracking(grid, sudoku):
         # if there are no empty squares, the solution has been found and the grid is returned
     for i in range(1, grid.__len__()+1):
         sudoku.update(i, position[0], position[1])
+        # updates the GUI to display the current attempt for a viable value
         if safe_value(grid, position, i):
             grid[position[0]][position[1]] = i
             # test a viable number in the open position
@@ -16,8 +17,9 @@ def backtracking(grid, sudoku):
                 return grid
                 # if the are no empty positions, this solution is correct
         grid[position[0]][position[1]] = 0
+        # if the current value is not viable, it is set to 0, but the i remains as the none viable solution to be incremented
         sudoku.update(0, position[0], position[1])
-        # if there are no viable solutions at this point, the position is reset to 0 and the algorithm backtracks
+        # updates the GUI to clear the current square
     return None
     # if there is no number that goes into the empty position, an empty grid is returned as there is no solution
             
@@ -31,7 +33,7 @@ def empty_space(grid):
 # finds a position in the grid where there is a 0, an empty value to be filled
 
 def check_row(grid, row, value):
-    for i in range(grid.__len__()):                                                                                                                                                                                                                                      
+    for i in range(grid.__len__()):           
         if(grid[row][i]==value):
             return False
     return True
