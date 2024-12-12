@@ -49,11 +49,12 @@ U = "unsolved:"
 S = "solved:"
 
 sudoku = Sudoku()
+current_grid = grid_3
 print(U)
-sudoku.print_grid(grid_3)
+sudoku.print_grid(current_grid)
 print(S)
 # prints the unsolved sudoku grid to the terminal
-sudoku.draw_grid(grid_3)
+sudoku.draw_grid(current_grid)
 # creates window and displays the sudoku puzzle
 running = True
 while running:
@@ -61,7 +62,7 @@ while running:
         # main application loop, checks for events to trigger actions in the GUI
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                sudoku.print_grid(backtracking(grid_3, sudoku))
+                sudoku.print_grid(backtracking(current_grid, sudoku))
                 # when the enter key is pressed, it signals the start of the backtracking solver, the solution will be displayed to the
                 # window while being solved, and the final solution will also be displayed to the terminal. unless a solution is not found
                 # and a empty sudoku puzzle is displayed and "solution not found" printed in the terminal.
