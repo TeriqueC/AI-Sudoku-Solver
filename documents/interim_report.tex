@@ -3,7 +3,6 @@
 \usepackage{hyperref}
 \usepackage{fix-cm}
 
-
 %%%%%%%%%%%%%%%%%%%%%%
 %%% Input project details
 \def\studentname{Terique Carnegie}
@@ -27,7 +26,7 @@ This report has been prepared on the basis of my own work. Where other published
 
 \vskip3em
 
-Word Count: 
+Word Count: 5,186
 
 \vskip3em
 
@@ -35,7 +34,7 @@ Student Name: \studentname
 
 \vskip3em
 
-Date of Submission: 
+Date of Submission: 13/12/2024
 
 \vskip3em
 
@@ -76,6 +75,16 @@ Neural networks like convolutional neural networks and recurrent neural networks
 Through this project I plan further the understanding of how Artificial Intelligence can be applied to solve games and puzzles with logical thinking and pattern recognition by developing a platform using the Python programming language for developing my AI algorithms, with the pygame library for the development of the Graphical User interface and the Visual Studio code IDE to effectively manage my work files, to aid in my projects goal of demonstrate the capability of Artificial intelligence and how it can quickly assess and solve puzzles and problems in a gaming environment, by creating multiple problem-solving algorithms which will tackle and solve sudoku puzzles of increasing sizes and complexity, and evaluating which of the following algorithms between both backtracking and neural networks is better  for solving a sudoku puzzle efficiently and potentially faster than humans in most cases. 
 
 \section{Project Milestones}
+
+There were a couple of milestones achieved in the development of the Artificial Intelligence solver. The following milestones played a significant role in putting together the application so that it can run and achieve the goals that the project was set to achieve within the first term of development, these milestones were: 
+
+\begin{itemize} 
+    \item \textbf{The development of the Console Interface:} this milestone had significance in the project as this milestone allowed for displaying the puzzle on the screen both solved and unsolved, this was a needed milestone as if the grid could not be displayed to the screen, it would be difficult to develop any of the AI algorithms as determining if the solving algorithms are outputting the correct results as reading from the array is not very efficient or user friendly due to the lack of a grid layout and sub-grid division. 
+
+    \item \textbf{The development of the Backtracking algorithm:} the first solving algorithm is key and very a very important milestone for this project as it displays that AI can be adapted to playing games and solving puzzles, as well as demonstrating how it is able to do so in a much shorter amount of time when compared to humans. However, having only one algorithm to demonstrate this is not optimal, it shows that progress has been made, and that the second term of development can be geared towards the development of a secondary algorithm to further back the claims my project aims to prove. 
+
+    \item \textbf{The development of the Graphical User Interface:} having a graphical user interface to display the steps and speed of the algorithm to a user is beneficial to proving that algorithm can learn from its mistakes, mimicking human intelligence, as it shows the algorithm choosing the incorrect solution and when realising its mistake, is displays the algorithm changing its solution to a valid one. This helps to demonstrate that AI can be used to solve problems quickly through the Sudoku grid solving animations that are run in the pygame window.
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%% Application Development
@@ -124,7 +133,10 @@ A look at the final sudoku printing algorithm:
 \section{Development of Backtracking Algorithm}
 \subsection{What is Backtracking?}
 
-%%% !!! NEEDS TO INCLUDE BACKTRACKING ARTICLES FOR BIBLIOGRAPHY, TRY FOR 2-3, EXPLAIN BACK TRACKING ALGORITHMS IN CRAZY DETAIL
+Backtracking is a main method of creating an AI algorithm to solve a constraint satisfaction problem. Constraint satisfaction problems are problems in which there are a finite set of variables that contain a finite domain of potential values which can be assigned to form a solution. These values will need to satisfy all the constraints of the problem in order for it to be a correct answer. Examples of CSPs are scheduling, puzzle solving such as sudokus and even resource allocation. Backtracking is an example of a complete algorithm, in which it can guarantee the if a solution does or does not exist for the constraint satisfactory problem \cite{Brailsford1999}. 
+
+Implementing a backtracking algorithm to solve a CSP is done through recursion and may even use a decision tree in order to represent the different potential values for the variable set of the CSP \cite{vanBeek2006} 
+The algorithm would generally work through choosing a value for a variable in the set, validating its choice, and if at any point a valid value for a variable can not be found, it will backtrack to a point were alternative decisions are available and have not all be exhausted and a different path to a potential solution is taken. This is done repeatedly until a solution is found, or there are no longer any unexplored values (all decisions have been exhausted completely) meaning that there is no solution to the constraint satisfaction problem \cite{Melanie2024}. 
 
 \subsection{Implementation of Backtracking Algorithm}
 
@@ -209,9 +221,16 @@ The main loop for the displaying the grid in the GUI
 \chapter{Current Progress}
 
 \section{Application Architecture}
+
+The project was divided in a way so that each file would have a specific purpose, a specific feature that would be needed to be used by the main file, in which the entire application is ran from. This organisation of the code base is beneficial as it allows for the program to be well documented, as the comments written in a file is relevant and specific to the feature being programmed. Also this architecture is good for the development of classes and features as they can be built upon and tested independently of one another which is necessary for keeping and maintaining good quality code for the AI sudoku solver, this also has the additional benefit of making feature updates and improvements easier to implement as making changes will only affect the current feature code and potential bugs will not be able to interfere with the progress being made on the other features of the main application. 
+
+An agile type of methodology style was implemented in the development process of the AI sudoku solver as the primary focus of the term time development cycle was putting together rapidly developed features that is capable of doing just enough to get the application running and connecting them together to get a working prototype which is able to print and solve the puzzle in a way which is easily interpreted by the applications intended users. This style of development will be carried out in the next term of development also as it would be more important to focus on developing the key features of the application so that the prototype is able to meet the set aims and objectives of the project and only once these are achieved, improvements and updates can be made to the code base to improve the application incrementally until the final product has been formed. 
+
 \section{Running the Application}
 
+When running the main application there 2 different sets of outputs are provided for the user to examine, the console displayed unsolved and solved sudoku puzzle and the pygame window in which the puzzle is displayed initially unsolved, and then shows the step by step procedures the solving algorithm takes to present the user with an actual solution. 
 
+The console based output was beneficial to the first sprint development cycle as it got the job done in terms of displaying what the algorithm needed to solve and the result the AI algorithm produced, this method of output done best at showing just how quickly the AI algorithm could solve the problem as it would almost instantly display both the unsolved and solved solution to the sudoku. However, this method of output was inefficient of displaying the steps and the decisions that the algorithm makes as I would need to print multiple instances of semi-complete solutions, which is not a console friendly design as many iterations and decisions are made, so the mistakes and inaccuracies made before the solution is found is abstracted from the users. 
 
 \begin{figure}[ht]
     \centering 
@@ -234,7 +253,8 @@ The main loop for the displaying the grid in the GUI
     \end{minipage}
 \end{figure}
 
-
+\clearpage
+The GUI based output was a beneficial for its ability to display the steps and decisions that the algorithm takes to find the solution. It shows the mistakes the algorithm finds and shows the how it works backwards, similarly to how a human would potentially try and find the solution to the sudoku problem. However, this form of output, despite solving the solution fairly quickly, potentially much quicker than most humans could, due to the algorithm requiring extra steps of clearing the squares and updating its value on the window’s grid means that this output is generally slower as more computational power is needed from the machine, although this is not that serious of an issue as the speed of the solving algorithm is still capable of proving and meeting the aims and objectives the application was set out to achieve. 
 
 \begin{figure}[ht]
     \centering 
@@ -255,12 +275,6 @@ The main loop for the displaying the grid in the GUI
         \caption{9x9 grid} 
         \label{fig:unsolved 9x9} 
     \end{minipage}
-\end{figure}
-
-
-
-\begin{figure}[ht]
-    \centering 
     \begin{minipage}{0.3\textwidth} 
         \includegraphics[width=\textwidth]{images/2x2 solved.png} 
         \caption{2x2 grid} 
@@ -286,20 +300,40 @@ The main loop for the displaying the grid in the GUI
 
 \section{Development of Neural Network solution}
 \subsection{What is a Neural Network?}
+
+A neural network is based off of how the humans are capable of thinking through the use of a network of interconnected neurons. A neural network mimics the human brain’s neuron connections through modelling an interconnected network of nodes which can receive information, process the data and output that data either to another layer in order to attempt a greater accuracy in its prediction through additional processing, or to the user as a final prediction output \cite{Dongare2012}. the model is capable of learning from its mistakes through the use of backpropagation and can also process information in parallel all of which can help the model to do things like pattern recognition, which can be applied to many different fields and problems which could potentially be the best means of finding a solution \cite{Woodford2023}. 
+
+This Artificial Intelligence model is implemented by separating the interconnected network into layers. These layers are the input layer, the hidden layer (or layers) and the output layer \cite{IBM2024} . The input layer is the primary layer that is used to take in all the inputs to be processed, hence its name. The hidden layers consist of the nodes that begin to process the inputted data, this is done through weights and biases associated with the connection between 2 nodes. These nodes are trained through passing in test data to help set and adjust the weights and biases of the connected nodes, by using a technique called backpropagation the algorithm can analyse predicted outputs and based on the output, make changes to weights and biases to update model and reduce its rate of error, allowing for growth and the ability to learn from its own mistakes \cite{Schmidhuber2015} . The output layer is responsible for compiling the final prediction to be used as a solution to the problem it was provided to solve. 
+
 \subsection{How can this be Implemented into my Application?}
 
 The next focus of the project moving forwards will be on developing a Neural Network that will be trained on taking in sudoku solutions, this is so that it will learn what a solution to a sudoku should look like and it should recognise the patterns/rules of a sudoku so that when it is faced against an incomplete sudoku, it will be able to provide an accurate prediction of a solution, that will hopefully be the correct answer to the inputted problem.
 
 With the use of a neural network, there is a possibility of overfitting, which is when the network produces great results when working within the training data, but when introduced to a new puzzle outside of the training set, the algorithm holds poor results. This is a risk to consider when developing the AI sudoku solver as poor results will impact the validity of the project results which will need to be able to show the effectiveness of artificial intelligence when implementing it in an environment to play games and solve puzzles. To mitigate this risk, it would be important need to dedicate time in the next term to researching solutions to overfitting, such as pruning, cross validation or data augmentation. 
 
-\section{Further Improvments planned for the GUI}
+\section{Further Improvements planned for the GUI}
 
-Once the other features of the project have become slightly more developed, the next planned step is to return to improve the sudoku interface through various means, such as randomised sudoku generation of varying difficultly, as well as making graphical changes to utilise components such as radio buttons or checkboxes to select which algorithm to use when solving the puzzle, also implementing a reset button to clear the grid and a start button to start the algorithm would help to make the application experience more user friendly and convenient. Additional text would also be needed, and useful for displaying the time it takes for solving the problem as well as potentially a mistakes counter for how efficiently/accurately it initially solves the problem. 
+Once the other features of the project have become slightly more developed, the next planned step is to return to improve the sudoku interface through various means, such as randomised sudoku generation of varying difficultly, as well as making graphical changes to utilise components such as radio buttons or checkboxes to select which algorithm to use when solving the puzzle, also implementing a reset button to clear the grid and a start button to start the algorithm would help to make the application experience more user friendly and convenient. Additional text would also be needed, and useful for displaying the time it takes for solving the problem as well as potentially a mistakes counter for how efficiently/accurately it initially solves the problem.
+
+\section{Next Term Timeline}
+
+Time at the end of the term will need to be spent on the compiling all the work done in the project so that a full application and full report can be produced, presented and submitted, so the amount of time that can be allocated on the development of the AI sudoku solver is limited, however with this limited time the project can be completed to a suitable degree, and the plan for how this will be accomplished is listed below:
+
+\begin{itemize} 
+    \item \textbf{Weeks 1-6:} Within the first 6 weeks of development, there should be significant progress made on the neural network model. The first 2 week would be spent on researching in more depth how I would begin to tackle this problem, but the following weeks would need to be spent programming the algorithms needed to build the model and significant time will be focused testing the model with training data so that the sudoku solver will be able to output proper and accurate predicted solutions to the presented problems the user may want to pass in.
+
+    \item \textbf{Weeks 6-8:} The following 2 weeks will be spent on updating the programmed AI solving algorithms so that the algorithms are able to monitor its own statistics so that the interface can display its results when solving a sudoku. These stats should show the speeds that the algorithm takes to solve the passed in problem, and the number of mistakes it took for it to get the final, valid solution to the problem. This feature would be a focal point as it is necessary to show how well the algorithms tackle these problems and prove its intelligence. 
+    
+    \item \textbf{Weeks 8-10:} The final few weeks of development will be spent on improving overall user experience and optimising the solving algorithms so that in the end of development a final, polished product is produced, with very little to no bugs and a very user friendly display features with super fast artificial intelligence algorithms that are capable of solving any sudoku with a solution, presented to it. 
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%% conclusion
 \chapter{Conclusion}
 
+In conclusion, the development of the AI sudoku solver has been coming along well as sighnificant progress has been made and milestones such as the development of the console interface, the graphical user interface and the Backtracking solving algorithm itself, which was the first planned AI algorithm to be implemented, has been achieved which helps the application to demonstrate how Artificial intelligence is superior to human intelligence due to its computational capacities and speed and how it can be applied and adapted to a gaming environment, in order to attempt to play games and solve puzzles efficiently through learning from its mistakes and finding a valid solution for a problem, which in the case of this project, is a solution to different sudokus of various sizes and difficulty. 
+
+With the next term of development, the areas of focus for the Artificial Intelligence sudoku solver will be the development of the Neural network model, displaying algorithm statistics in order to provide metrics which can be used to back up and prove the claims made by this project, as well as further improving the user interface so that the application as a whole will be more user friendly and easy to work with so that my points can be more effectively monitored  and displayed in a more digestible manner. 
 
 %%%% ADD YOUR BIBLIOGRAPHY HERE
 \newpage
@@ -315,9 +349,21 @@ AI for Social Good (n.d.). Artificial Intelligence vs. Human Intelligence: Explo
 
 \bibitem{GeeksforGeeks} GeeksforGeeks (n.d.). Sudoku | Backtracking-7. [online] Available at: \url{https://www.geeksforgeeks.org/sudoku-backtracking-7/} [Accessed 9 Oct. 2024]. 
 
-\bibitem{Simonis} Simonis, H., n.d. Constraint Programming in Action. [pdf] Available at: \url{https://ai.dmi.unibas.ch/_files/teaching/fs21/ai/material/ai26-simonis-cp2005ws.pdf} [Accessed 10 Oct. 2024].
-
 \bibitem{AkinDavid} Charles Akin-David, Richard Mantey, n.d. Solving Sudoku with Neural Networks. [pdf] Available at: \url{https://cs230.stanford.edu/files_winter_2018/projects/6939771.pdf} [Accessed 10 Oct. 2024].
+
+\bibitem{Brailsford1999} S. C. Brailsford, C. N. Potts, and B. M. Smith, \textit{Constraint satisfaction problems: Algorithms and applications}, European Journal of Operational Research, vol. 119, no. 3, pp. 557-581, 1999. Available at: \url{https://www.sciencedirect.com/science/article/abs/pii/S0377221798003646}
+
+\bibitem{vanBeek2006} P. van Beek, \textit{Backtracking Search Algorithms}, Foundations of Artificial Intelligence, vol. 2, pp. 85-134, 2006. Available at: \url{https://www.sciencedirect.com/science/article/abs/pii/S1574652606800088}
+
+\bibitem{Melanie2024} Melanie, \textit{Backtracking: What is it? How do I use it?}, DataScientest, 29 Mar 2024. Available at: \url{https://datascientest.com/en/backtracking-what-is-it-how-do-i-use-it}
+
+\bibitem{Dongare2012} A. D. Dongare, R. R. Kharde, and A. D. Kachare, \textit{Introduction to Artificial Neural Network}, International Journal of Engineering and Innovative Technology (IJEIT), vol. 2, no. 1, pp. 189-194, 2012. Available at: \url{https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=04d0b6952a4f0c7203577afc9476c2fcab2cba06} 
+
+\bibitem{Woodford2023} C. Woodford, \textit{How neural networks work - A simple introduction}, Explain that Stuff, 12 May 2023. Available at: \url{https://www.explainthatstuff.com/introduction-to-neural-networks.html} 
+
+\bibitem{IBM2024} IBM, \textit{What is a Neural Network?}, IBM, 2024. Available at: \url{https://www.ibm.com/topics/neural-networks} 
+
+\bibitem{Schmidhuber2015} J. Schmidhuber, \textit{Deep Learning in Neural Networks: An Overview}, Neural Networks, vol. 61, pp. 85-117, 2015. Available at: \url{https://arxiv.org/abs/1404.7828}
 
 \end{thebibliography}
 \label{endpage}
