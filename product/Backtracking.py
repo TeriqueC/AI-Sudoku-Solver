@@ -1,3 +1,4 @@
+no_mistakes = 0
 # the method containing the main backtracking algorithm
 def backtracking(grid, sudoku):
     position = empty_space(grid)
@@ -20,6 +21,8 @@ def backtracking(grid, sudoku):
         # if the current value is not viable, it is set to 0, but the i remains as the none viable solution to be incremented
         sudoku.update(0, position[0], position[1])
         # updates the GUI to clear the current square
+        global no_mistakes
+        no_mistakes+=1
     return None
     # if there is no number that goes into the empty position, an empty grid is returned as there is no solution
             
@@ -62,4 +65,10 @@ def check_square(grid, row, column, value):
 
 def safe_value(grid, position, value):
     return check_row(grid, position[0], value) and check_column(grid, position[1], value) and check_square(grid, position[0], position[1], value)
-# simplyfies the process of checking values in the main algorithm function
+# simplifies the process of checking values in the main algorithm function
+
+def mistakes_made():
+    global no_mistakes
+    mistakes = no_mistakes
+    no_mistakes=0
+    return mistakes
