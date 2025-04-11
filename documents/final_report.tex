@@ -75,9 +75,29 @@ Neural networks like convolutional neural networks and recurrent neural networks
 
 Through this project I plan further the understanding of how Artificial Intelligence can be applied to solve games and puzzles with logical thinking and pattern recognition by developing a platform using the Python programming language for developing my AI algorithms, with the pygame library for the development of the Graphical User interface and the Visual Studio code IDE to effectively manage my work files, to aid in my projects goal of demonstrate the capability of Artificial intelligence and how it can quickly assess and solve puzzles and problems in a gaming environment, by creating multiple problem-solving algorithms which will tackle and solve sudoku puzzles of increasing sizes and complexity, and evaluating which of the following algorithms between both backtracking and neural networks is better  for solving a sudoku puzzle efficiently and potentially faster than humans in most cases. I believe that this project will help me to display my skills as a software engineer and can help me to demonstrate a greater understanding in the application of Artificial intelligence and the type of fields and situations that it can be applied to in the technology sector, which will make me very versatile in this industry. 
 
+\section{Professional Issues Faced with the Project}
+
+An issue of professionalism that arises when working with artificial intelligence is the concern of AI being integrated into workforces due to its problem solving skill, computational efficiency and overall reduced costs to any company choosing to employ AI for their business. This brings concerns for humanity as many people can be affected by this as they may find less job opportunities due to the rise in applications of artificial intelligence and in some cases, people may lose the jobs they are currently working as they will not be able to keep up with the processing of a machine and are not as cost effective as employing one. 
+
+\subsection{Artificial intelligence replacing human jobs} 
+
+This problem has been seen arising around the world as companies are opting to reduce costs while increasing their outputs, which is the type of returns artificial intelligence can bring to a business, and example in public domain of this taking place is the implementation of chatbots run autonomously with the power of Artificial Intelligence (reference here). There is currently 23\% of customer service companies making use of automated chatbots and around 80\% of people having interacted with these AI chatbots which was able to generate over \$100 billion in ecommerce transactions \cite{Repai2024}, as well as saving companies over 2.5 billion working hours \cite{Chatbot2025}.  This shows that for tasks that can be improved with the assistance of AI then companies do not have a reason to not employ it as not doing so will only cost them a lot of time and money. In addition to this there is also around 87\% of users that reported to be satisfied with their experience when interaction with this implementation of AI \cite{CustomerAI2025}  as they were pleased with how quick and accurate their responses was, so as long as the models are trained well, then companies will have a means of producing very quick, cheap  and effective output that does not involve a large and slow human workforce. With all this information, businesses integrating AI into their workforce in at least one form, like AI chatbots, are projected to increase to around 70\% \cite{Nexford2024}. 
+
+Regardless of these benefits to the business, AI in some areas can negatively impact the moral of human employees, as in the case of Amazon warehouses which employ managerial AI systems, which makes some of the employees managed by it feel as if they were “disposable cogs” in an “unforgiving” workplace \cite{APAPsych2025},  this isn't good for a company as having poor employee satisfaction among your employees can lead to low productivity and even higher staff turnover in the company, which could negatively affect the business’s brand reputation. But even with these drawbacks to using AI, the benefits it raises are far superior for the business, and with the rate these algorithms are advancing, AI will be able to perform much better, imitating human work well enough to overcome challenges it may face when aiming to expand into the workforce. 
+
+However, despite the rise in AI across the workforce, there are still jobs and career paths that are available and are very resistant to AI changes, these are jobs that require creativity, which AI lacks as it can't replicate the experiences and intuitions of man, empathy, as machines do not have the same behavioral patterns as humans, and leadership, as humanity is not very likely to follow the lead of AI as it lacks initiative that is integral for leading any team of people. Some of these kinds of jobs include fields in social work, politics, education, healthcare and entrepreneurs. As social workers are required to show deep understanding of human emotion and experiences, which although AI could mimic this, it cannot truly relate and deeply understand those that would need help at this would require difficult ethical choices and complex interactions that models are not able to achieve. The lack of these traits also gives rise to a lack of the ability to build rapport and trust in AI, which makes other careers such as politics, education and healthcare extremely troublesome for artificial intelligence to expand into, as there is still many people that would prefer the human presence whether as a customer or an employee in these fields, around 44\% of people in a global study would be willing to trust the application of artificial intelligence in healthcare for diagnosis and treatment \cite{Statista2022} this shows that in some fields, AI is not yet ready to take over and will be faced with resistance.  
+
+\subsection{The impact of demonstrating AI as a superior problem solver} 
+
+The AI sudoku solver relates to this professional issue, as it primarily serves as a demonstration of the advanced computational speed and efficiency of AI models working from powerful processors. Although it aims to achieve this through the use of playing games and solving puzzles, the games and puzzles provides a “playground”, a safe environment with constraints, the game/puzzle rules, for in which the training model can experiment and learn in hopes that it will be able to quickly adapt and efficiently calculate and predict a correct solution to the problem. This ability is the key trait that makes artificial intelligence attractive to companies that can exploit this to streamline any repetitive tasks that require a degree of problem solving that may take employees an unnecessarily long time to complete. This involves my project with this professional concern as the project itself acts as a proof of concept towards the idea that at some tasks human intelligence is inferior to digital intelligence as its ability to compute multiple instructions in succession, combined with algorithms which give it the ability to evaluate and evolve until it masters a solution to the problem it is presented with, makes it more suitable in the workforce for certain jobs which makes human employees redundant, which is a real fear that some people have in regards to the security of their jobs and careers which they have spent learning, studying and working in. 
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% Application Development
+\chapter{Application Development}
+
 \section{Project Milestones}
 
-There were a couple of milestones achieved in the development of the Artificial Intelligence solver. The following milestones played a significant role in putting together the application so that it can run and achieve the goals that the project was set to achieve within the first term of development, these milestones were: 
+There were a couple of milestones achieved in the development of the Artificial Intelligence sudoku solver. The following milestones played a significant role in putting together the application so that it can run and achieve the goals that the project was set to achieve were: 
 
 \begin{itemize} 
     \item \textbf{The development of the Console Interface:} this milestone had significance in the project as this milestone allowed for displaying the puzzle on the screen both solved and unsolved, this was a needed milestone as if the grid could not be displayed to the screen, it would be difficult to develop any of the AI algorithms as determining if the solving algorithms are outputting the correct results as reading from the array is not very efficient or user friendly due to the lack of a grid layout and sub-grid division. 
@@ -90,11 +110,6 @@ There were a couple of milestones achieved in the development of the Artificial 
     Another integral milestone in the development of this project is the implementation of the secondary artificial intelligence algorithm, which is a CNN (a convolutional neural network), this milestone is important as it shows that a machine is capable to learning distinct patterns and features of a problem and its solution, similarly to a human, and use this knowledge to accurately predict a viable solution to a given problem. With the developed model, my application will be able to demonstrate how artificial intelligence can be trained to attempt to solve a mathematical problem and give a prediction with a suitable degree of accuracy.
 \end{itemize}
 
-\section{Professional Issues Faced with the Project}
-
-%%%%%%%%%%%%%%%%%%%%%%
-%%% Application Development
-\chapter{Application Development}
 \section{Development of Terminal Interface}
 
 The main focus for the start of the sudoku solver needs to be the interface for displaying the sudoku. This is a necessary starting point as in order to demonstrate Artificial Intelligence solving the sudoku, the product needs to be able to display both the unsolved and solved solution in a way that is easily digested by the target audience. The borders, regions, numbers and void values need to be distinct and observable to those trying to understand what the AI algorithms is trying to achieve, and if the algorithms are doing so correctly. That makes this element of the product integral to the development of my project. 
@@ -137,6 +152,7 @@ A look at the final sudoku printing algorithm:
 \end{verbatim}
 
 \section{Development of Backtracking Algorithm}
+
 \subsection{What is Backtracking?}
 
 Backtracking is a main method of creating an AI algorithm to solve a constraint satisfaction problem. Constraint satisfaction problems are problems in which there are a finite set of variables that contain a finite domain of potential values which can be assigned to form a solution. These values will need to satisfy all the constraints of the problem in order for it to be a correct answer. Examples of CSPs are scheduling, puzzle solving such as sudokus and even resource allocation. Backtracking is an example of a complete algorithm, in which it can guarantee the if a solution does or does not exist for the constraint satisfactory problem \cite{Brailsford1999}. 
@@ -264,6 +280,7 @@ The main loop for the displaying the grid in the GUI
 
 \clearpage
 \section{Development of the convolutional Neural Network}
+
 \subsection{What is a Neural Network?}
 
 A neural network is based off of how the humans are capable of thinking through the use of a network of interconnected neurons. A neural network mimics the human brain’s neuron connections through modelling an interconnected network of nodes which can receive information, process the data and output that data either to another layer in order to attempt a greater accuracy in its prediction through additional processing, or to the user as a final prediction output \cite{Dongare2012}. the model is capable of learning from its mistakes through the use of backpropagation and can also process information in parallel all of which can help the model to do things like pattern recognition, which can be applied to many different fields and problems which could potentially be the best means of finding a solution \cite{Woodford2023}. 
@@ -274,11 +291,11 @@ This Artificial Intelligence model is implemented by separating the interconnect
 
 \subsection{Implementation of the Convolutional Neural Network}
 
-The next focus of the project moving forwards will be on developing a Neural Network that will be trained on taking in sudoku solutions, this is so that it will learn what a solution to a sudoku should look like and it should recognise the patterns/rules of a sudoku so that when it is faced against an incomplete sudoku, it will be able to provide an accurate prediction of a solution, that will hopefully be the correct answer to the inputted problem.
-
-With the use of a neural network, there is a possibility of overfitting, which is when the network produces great results when working within the training data, but when introduced to a new puzzle outside of the training set, the algorithm holds poor results. This is a risk to consider when developing the AI sudoku solver as poor results will impact the validity of the project results which will need to be able to show the effectiveness of artificial intelligence when implementing it in an environment to play games and solve puzzles. To mitigate this risk, it would be important need to dedicate time in the next term to researching solutions to overfitting, such as pruning, cross validation or data augmentation. 
-
 \subsection{Model 1}
+\subsection{Model 2}
+\subsection{Model 3}
+\subsection{Model 4}
+\subsection{Model 5}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%% Final Product
@@ -318,24 +335,57 @@ The console based output was beneficial to the first sprint development cycle as
 \end{figure}
 
 \clearpage
-The GUI based output was a beneficial for its ability to display the steps and decisions that the algorithm takes to find the solution. It shows the mistakes the algorithm finds and shows the how it works backwards, similarly to how a human would potentially try and find the solution to the sudoku problem. However, this form of output, despite solving the solution fairly quickly, potentially much quicker than most humans could, due to the algorithm requiring extra steps of clearing the squares and updating its value on the window’s grid means that this output is generally slower as more computational power is needed from the machine, although this is not that serious of an issue as the speed of the solving algorithm is still capable of proving and meeting the aims and objectives the application was set out to achieve. 
+The GUI based output is beneficial for its ability to display the steps and decisions that the algorithm takes to find the solution. It shows the mistakes the algorithm finds and shows the how it works backwards, similarly to how a human would potentially try and find the solution to the sudoku problem. However, this form of output, despite solving the solution fairly quickly, potentially much quicker than most humans could, due to the algorithm requiring extra steps of clearing the squares and updating its value on the window’s grid means that this output is generally slower as more computational power is needed from the machine, although this is not that serious of an issue as the speed of the solving algorithm is still capable of proving and meeting the aims and objectives the application was set out to achieve, demonstrating the power and efficiency of artificial intelligence. 
 
-After additional changes the layout of the final application was altered to better center the grid on screen as it is the primary focus of the application as this is where the processing power of Artificial Intelligence will be used on the problem and its solution displayed. in addition to this, 2 other sections have been included in the interface to firstly explain to the user how to use the application, which inputs the software takes to allow the user to switch between the backtracking algorithm and the Convolutional Neural Network prediction with the Enter and Space keys, and different preset sudoku problems which the algorithms have not seen before with the Number keys 1-4, as well as the Backspace key to clear the current solution and leaving behind the unsolved sudoku. The second section is where the time taken for the solution algorithm to give its final answer, and the number of mistakes the backtracking algorithm had made to reach the final solution or the number of mistakes the final prediction of the Convolutional Neural Network has made. 
+After additional changes the layout of the final application was altered to better center the grid on screen as it is the primary focus of the application as this is where the processing power of Artificial Intelligence will be used on the problem and its solution displayed. in addition to this, 2 other sections have been included in the interface to firstly explain to the user how to use the application, which inputs the software takes to allow the user to switch between the backtracking algorithm and the Convolutional Neural Network prediction with the Enter and Space keys, and different preset sudoku problems which the algorithms have not seen before with the Number keys 1-4, where 1 would be the easiest sudoku puzzle and the difficulty increases to 3 the hardest, while 4 is a puzzle without solution to check the algorithms behaviour when presented with this challenge and the Backspace key to clear the current solution and leaving behind the unsolved sudoku. The second section is where the time taken for the solution algorithm to give its final answer, and the number of mistakes the backtracking algorithm had made to reach the final solution or the number of mistakes the final prediction of the Convolutional Neural Network has made. 
+
+\begin{figure}[ht]
+    \centering 
+    \begin{minipage}{0.7\textwidth} 
+        \includegraphics[width=\textwidth]{images/Final unsolved.png} 
+        \caption{Inital Application running} 
+        \label{fig: unsolved grid} 
+    \end{minipage} 
+    \hfill 
+\end{figure}
+
+\begin{figure}[ht]
+    \centering  
+    \begin{minipage}{0.8\textwidth} 
+        \includegraphics[width=\textwidth]{images/Final solved (1).png} 
+        \caption{Sudoku solved with backtracking} 
+        \label{fig: backtracking solution} 
+    \end{minipage} 
+    \hfill 
+    \begin{minipage}{0.8\textwidth} 
+        \includegraphics[width=\textwidth]{images/Final solved (2).png} 
+        \caption{Sudoku solution predicted through CNN} 
+        \label{fig: CNN solution} 
+    \end{minipage}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%% What could be Improved
 \chapter{Project Evaluation}
 
 \section{How well the Application Achieves its Aims}
-The final product provided uses 2 different algorithms to solve the classical mathematical problem, a sudoku. The backtracking algorithm and the Convolutional Neural network both work within the application to demonstrate just how well machines can learn through using 2 different techniques and still provide a suitable solution to a range of sudoku problems of varying difficulty which is more computationally efficient in comparison to a human. The application shows this through displaying the grid and rendering the solution in real time, along with the time it took the algorithm to calculate its solution and the number of mistakes it has made to get to its conclusion, in the case of the backtracking algorithm, and the mistakes in the final prediction for the CNN. Despite the errors in development that needed to be overcome to develop the project to this state, the product does its job well in meeting its objective of developing AI algorithms that is capable of playing games and solving puzzles, and doing this task more effectively and efficiently than mankind, proving the superior processing capabilities of a computer.
+The final product provided uses 2 different algorithms to solve the classical mathematical problem, a sudoku. The backtracking algorithm and the Convolutional Neural network both work within the application to demonstrate just how well machines can learn through using 2 different techniques and still provide a suitable solution to a range of sudoku problems of varying difficulty which is more computationally efficient in comparison to a human. 
+
+In the case of the Backtracking algorithm it is able to calculate every type of sudoku combinations, learning from failed attempts to discover an answer at speeds most if not all humans would be unable to compete with, and in the case of the Convolutional Neural Network, it is trained on existing problems and solutions to find the patterns and features of the solution so that it can attempt to accurately replicate the steps required to predict a viable solution at speeds even faster than the backtracking approach once the model is fully trained as it does not need to attempt to work through many possible incorrect solution branches to try and calculate what works and what does not, it works through recognising the ruleset of the sudoku and making a prediction that will likely satisfy the same patterns as the previous solutions it was trained with, producing a solution that very accurately follows the constraints of the sudoku problem.
+
+The application shows this through displaying the grid and rendering the solution in real time, along with the time it took the algorithm to calculate its solution and the number of mistakes it has made to get to its conclusion, in the case of the backtracking algorithm, and the mistakes in the final prediction for the CNN. Despite the errors in development that needed to be overcome to develop the project to this state, the product does its job well in meeting its objective of developing AI algorithms that is capable of playing games and solving puzzles, and doing this task more effectively and efficiently than mankind, proving the superior processing capabilities of a computer.
 
 \section{Potential Improvements for the Application}
-In the end, the Project done well in meeting the set out expectations, however, there is always room for improvement and there are a range of features that could have made for a better application and would have provided a better user experience, which would have aided the project in superseding its objectives and better demonstrating the power of Artificial intelligence as a means to solve problems. One of the areas that needed improvement was the final convolutional model. Despite the model having a decently high accuracy and validation accuracy, around 97\%, these scores were not yet perfect as there was still a degree of uncertainty in the predictions which lead to a few mistakes being generated in some of the 81 cells, which with additional time to develop could have been ironed out to find a truly optimal Convolutional Neural Network. In addition to the final model, the application could have benefitted from a feature which would have allowed users to input their own sudoku problems, rather than the preset selection to switch between, as this would have shown the effectiveness of the 2 algorithms with a greater variety of problems. Training additional optimal CNN models on variety of sudoku sizes would give the application the ability to show an ability to solve size variants of the classic sudoku problem, which would have allowed for the utilisation of preexisting features such as the adaptive grid rendering and the backtracking algorithms versatility. 
+In the end, the Project done well in meeting the set out expectations, however, there is always room for improvement and there are a range of features that could have made for a better application and would have provided a better user experience, which would have aided the project in superseding its objectives and better demonstrating the power of Artificial intelligence as a means to solve problems. One of the areas that needed improvement was the final convolutional model. Despite the model having a decently high accuracy and validation accuracy, around 97\%, these scores were not yet perfect as there was still a degree of uncertainty in the predictions which lead to a few mistakes being generated in some of the 81 cells, which with additional time to develop could have been ironed out to find a truly optimal Convolutional Neural Network. 
+
+In addition to the final model, the Backtracking algorithm despite being very fast and guaranteeing a corrected solution to the sudoku problem, given that a solution exists, the current algorithm could benefit from using more efficiency such as opting to use other means to detect already used numbers, other than just calculating an exhaustive search going through each number in rows, columns and sub grids which, although not much, slows down the algorithm and increases its computational time which is undesired when trying to prove the computational superiority of AI algorithms. 
+
+The application could have also benefitted from a feature which would have allowed users to input their own sudoku problems, rather than the preset selection to switch between, as this would have shown the effectiveness of the 2 algorithms with a greater variety of problems. Training additional optimal CNN models on variety of sudoku sizes would give the application the ability to show an ability to solve size variants of the classic sudoku problem, which would have allowed for the utilisation of preexisting features such as the adaptive grid rendering and the backtracking algorithms versatility. 
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%% conclusion
 \chapter{Conclusion}
-In conclusion, the development of the AI sudoku solver has gone in achieving its goals as significant progress has been made for each milestone such as the development of the console interface, the graphical user interface, the Backtracking solving algorithm and the CNN which helps the application to demonstrate how Artificial intelligence is superior to human intelligence due to its computational capacities and speed and how it can be applied and adapted to a gaming environment, in order to attempt to play games and solve puzzles efficiently through learning from its mistakes and trying to discover an accurate and viable solution for a problem, which in the case of this project, is a solution to different sudokus of varying difficulty.
+In conclusion, the development of the AI sudoku solver has gone well in achieving its goals as significant progress has been made for each milestone such as the development of the console interface, the graphical user interface, the Backtracking solving algorithm and the Convolutional Neural Networks. although the final product produced at the end of this project could be improved to be more efficient, in the case of the backtracking algorithm and more accurate, in the case of the Convolutional Neural Network, the algorithms still performed well with great speeds and very high accuracy despite their rooms for advancements which helps the application to demonstrate how Artificial intelligence is superior to human intelligence due to its computational capacities and speed and how it can be applied and adapted to a gaming environment, which provides a safe, fun and engaging setting to test the limits and capabilities of artificial intelligence, in order to attempt to play games and solve puzzles efficiently through learning from its mistakes and trying to discover an accurate and viable solution for a problem which in the case of this project is a solution to different sudokus of varying difficulty.
 
 %%%% ADD YOUR BIBLIOGRAPHY HERE
 \newpage
@@ -352,6 +402,18 @@ AI for Social Good (n.d.). Artificial Intelligence vs. Human Intelligence: Explo
 \bibitem{GeeksforGeeks} GeeksforGeeks (n.d.). Sudoku | Backtracking-7. [online] Available at: \url{https://www.geeksforgeeks.org/sudoku-backtracking-7/} [Accessed 9 Oct. 2024]. 
 
 \bibitem{AkinDavid} Charles Akin-David, Richard Mantey, n.d. Solving Sudoku with Neural Networks. [pdf] Available at: \url{https://cs230.stanford.edu/files_winter_2018/projects/6939771.pdf} [Accessed 10 Oct. 2024].
+
+\bibitem{Repai2024} Rep.ai, \textit{53 Chatbot Statistics For 2024: Usage, Demographics, Trends}, 2024. Available at: \url{https://rep.ai/blog/chatbot-statistics}.
+
+\bibitem{Chatbot2025} \textit{65 Chatbot Statistics for 2025 — New Data Released}, 2025. Available at: \url{https://www.demandsage.com/chatbot-statistics/}.
+
+\bibitem{CustomerAI2025} \textit{AI in Customer Satisfaction Statistics: 2025 Data}, 2025. Available at: \url{https://seosandwitch.com/ai-customer-satisfaction-stats/}.
+
+\bibitem{Nexford2024} Nexford University, \textit{How Will Artificial Intelligence Affect Jobs 2024-2030}, 2024. Available at: \url{https://nexford.org}.
+
+\bibitem{APAPsych2025} APA PsycNet, \textit{APA PsycNet FullTextHTML page}, 2025. Available at: \url{https://psycnet.apa.org/fulltext/2024-87092-001.html}
+
+\bibitem{Statista2022} Statista, \textit{Trust and acceptance of healthcare AI worldwide 2022}, 2022. Available at: \url{https://www.statista.com}.
 
 \bibitem{Brailsford1999} S. C. Brailsford, C. N. Potts, and B. M. Smith, \textit{Constraint satisfaction problems: Algorithms and applications}, European Journal of Operational Research, vol. 119, no. 3, pp. 557-581, 1999. Available at: \url{https://www.sciencedirect.com/science/article/abs/pii/S0377221798003646}
 
