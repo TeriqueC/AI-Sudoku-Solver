@@ -45,7 +45,7 @@ def train_model():
         BatchNormalization(),
         Conv2D(162, (5, 5), padding='same'),
         LeakyReLU(negative_slope=0.1),
-        # relu ativation in order to simplify learning by removing negative values to help focus on learning patterns
+        # leaky relu activation in order to simplify learning by removing negative values to help focus on learning patterns
         # padding for controlling the size of feature maps, keeps the output size the same as the input
         Flatten(),
         Dense((9*9)*9),
