@@ -20,7 +20,7 @@ def load_data():
     # data is better normalised (valued between 1 and 0) as this helps to keep the optimization process more simplified and faster as well as reducing the chances of overfitting. also some activation functions require values in a specific range to improve effectiveness
 
     puzzles = puzzles.reshape(1000000, 9, 9, 1)  # Reshape to (num_samples, 9, 9, 1)
-    solutions = solutions.reshape(1000000, 9, 9)  # Flatten the solutions to (num_samples, 81)
+    solutions = solutions.reshape(1000000, 9, 9)  # Flatten the solutions to (num_samples, 9, 9)
 
     # reshaping the numpy arrays are important as the data needs to be formatted as a 4 dimensional tensor, which will allow for the convolutional layers to perform filtering and pooling more effectively. also helps to fit the expected input of the CNN, only 1 channel as I am not working with RGB images which would require 3 chanels for each RGB value.
 

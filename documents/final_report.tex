@@ -373,13 +373,286 @@ Callbacks can be helpful in the training phase of the model as it can provide a 
 
 \subsection{Implementation of the Convolutional Neural Network}
 
+The convolutional Neural Network will need to be trained on taking in sudoku solutions as training data, this is so that it will learn what a solution to a sudoku should look like and it should recognise the patterns/rules of a sudoku so that when it is faced against an incomplete sudoku, it will be able to provide an accurate prediction of a solution, that will hopefully be the correct answer to the inputted problem. 
 
+The planned structure of the convolutional neural network model would take in the 81 numbers of a sudoku solution in a 9x9 grid format, the model will then need to output a 9x9 grid with the correctly predicted solutions to the missing numbers that it should have learnt to solve from the networks training phase. 
+
+The model will need to have a set of convolutional layers in order to attempt to extract the features of a sudoku, such as the rules and constraints the numbers in the solution needs to abide by, so that the convolutional neural network will be able to learn the patterns and apply what it understands from these features to mimic what a solution should look like more accurately when the network is supplied with a new unseen sudoku puzzle. The model will have a typical CNN design where it has repeated convolutional layers in conjunction with MaxPooling layers to highlight the key patterns within a sudoku, as well as batch normalisation and dropout functions in an attempt to maintain a stable training phase that will hopefully not overfit to the data it is being trained with, as the network will be training on a dataset of 1,000,000 sudoku puzzles and their respective solutions. 
+
+The output of the convolutional neural network will be a grid of normalised values that will need to be de-normalised into values that will give an actual solution to the sudoku problem. In order to extract the features from the network, necessary for the model to calculate an accurate prediction for the solution, the CNN will need a dense layer which will collect all the features and patterns from the previous layers, and then a final dense layer that will compile all that the model has learnt to hopefully produce an accurate prediction on what the solution for the newly inputted sudoku puzzle should be. 
 
 \subsection{Model 1}
+
+The initial design for the convolutional neural network is as follows 
+
+\begin{verbatim}
+    model = Sequential([
+        Input(shape=(9, 9, 1)), # takes in a 9x9 grid with only 1 channel
+        Conv2D(128, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        MaxPooling2D((2, 2)),
+        Dropout(0.4),
+        Conv2D(128, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        MaxPooling2D((2, 2)),
+        Dropout(0.4),
+        Conv2D(256, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        MaxPooling2D((2, 2)),
+        Dropout(0.4),
+        Conv2D(256, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Dropout(0.4),
+        Flatten(),
+        Dense(512, activation='relu'),
+        Dropout(0.5),
+        Dense(81, activation='linear')  # Output layer with 81 neurons
+    ])
+\end{verbatim}
+
+\begin{verbatim}
+model.compile(optimizer=Adam(learning_rate=0.0001), 
+ loss=MeanSquaredError(), metrics=['accuracy'])
+reduce_lr = ReduceLROnPlateau(monitor='val_loss',
+ factor=0.1, patience=3, min_lr=1e-6, verbose=1)
+early_stopping = EarlyStopping(monitor='val_loss',
+ patience=5, verbose=1, restore_best_weights=True)
+# callbacks to try and reduce the probability of the CNN losing accuracy
+
+model.fit(puzzles, solutions, epochs=50, batch_size=128, 
+validation_split=0.2, callbacks=[reduce_lr, early_stopping])
+\end{verbatim}
+
+The convolutional neural network makes use of various Conv2D layers, which increases in size from 2 layers that produces 128 filter maps that use a 3x3 filter size and an additional 2 that produces 256 filter maps that use a 3x3 filter size, so that the model can attempt to further draw out any important, key features and patterns that it can potentially find in the training data set. The use of MaxPooling2D that uses a pooling window with 2x2 dimensions, in order to attempt to focus the network onto these features of the sudoku puzzle by reducing unnecessary data and computations, these layers with the addition of the normalisation techniques, such as the dropout of 0.4, which would ignore 40\% of neurons to reduce dependencies, would lead to the assumption that the model would work well to extract the rules and constraints of the sudoku puzzle, but as can be seen below, the model is not training very effectively. 
+
+\clearpage
+\begin{figure}[ht]
+    \centering 
+    \begin{minipage}{1.1\textwidth} 
+        \includegraphics[width=\textwidth]{images/first model metrics.png} 
+        \caption{Evaluated Metrics of 1st Model} 
+        \label{fig: Evaluated Metrics of 1st Model} 
+    \end{minipage} 
+    \hfill 
+\end{figure}
+
+The measured metrics for this model is not looking very good. It uses the mean squared error loss function to calculate the difference between the predicted value and the actual value the convolutional neural network was supposed to produce. with this it can be seen that the accuracy of this method is not very good as it is disastrously low along with the validation scores, despite the loss and validation loss looking deceivingly low. The model begins to fall off at epoch 30, where the accuracy seems to be falling below the previous, although the validation accuracy still seems to slightly increase, until the next epoch, where we see both the accuracy and the validation accuracy drop below the previous epoch. This seems to show an extreme level of underfitting in my model due to the numerous methods used to try and reduce overfitting, which has hindered the model from learning effectively at all. 
+
 \subsection{Model 2}
+
+Due to the results of the displayed metric evaluation to the previous model, much needed restructuring done to the model can be seen below. 
+
+\begin{verbatim}
+    model = Sequential([
+        Input(shape=(9, 9, 1)), # takes in a 9x9 grid with only 1 channel
+        Conv2D(162, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(162, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(162, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(162, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(162, (3, 3), activation='relu', padding='same'),
+        Flatten(),
+        Dense(512, activation='relu'),
+        Dropout(0.1),
+        Dense(81, activation='linear')  # Output layer with 81 neurons
+    ])
+\end{verbatim}
+
+\begin{verbatim}
+    model.compile(optimizer=Adam(learning_rate=0.001), 
+    loss=MeanSquaredError(), metrics=['accuracy'])
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss',
+    factor=0.1, patience=3, min_lr=1e-6, verbose=1)
+    early_stopping = EarlyStopping(monitor='val_loss',
+    patience=5, verbose=1, restore_best_weights=True)
+    # callbacks to try and reduce the probability of the CNN losing accuracy
+
+    model.fit(puzzles, solutions, epochs=6, batch_size=256, 
+    validation_split=0.2, callbacks=[reduce_lr, early_stopping])
+\end{verbatim}
+
+In an attempt to reduce the huge underfitting that can be seen in the previous model, it would seem to be effective to remove a significant amount of methods and techniques deployed to reduce overfitting, as the number and sizes of impact of some of these functions seems to be overpowering the convolutional neural networks ability to efficiently learn from the massive dataset provided to it. The model has 5 convolutional layers all producing 162 filter maps, as this should produce a more consistent level of feature extraction. However, due to the nature of sudoku puzzles, it seems very necessary to remove any type of pooling from the network as all of the values in the puzzle contributes to the solution and these values can help to reveal to the model the actual rules and constraints of the problem it is being provided with. This along with the reductions to dropout functions in the network should lead to a better learning environment for the convolutional network and in turn produce better accuracy and validation accuracy scores despite the higher computational costs, that forces a reduction in the number of epochs the model can use to train on the data. 
+
+\begin{figure}[ht]
+    \centering 
+    \begin{minipage}{1.1\textwidth} 
+        \includegraphics[width=\textwidth]{images/2nd model metrics.png} 
+        \caption{Evaluated Metrics of 2nd Model} 
+        \label{fig: Evaluated Metrics of 2nd Model} 
+    \end{minipage} 
+    \hfill 
+\end{figure}
+
+Unfortunately, the updated model was unable to overcome the underfitting issues as in the increased amount of time it has to get through the dataset in an epoch, the accuracy seems to increase, but in the next epochs the accuracy and validation accuracy seems to begin to decrease, while the loss and validation loss begins to plateau which is not a good sign for the convolutional neural networks ability to learn and adapt to sudoku problems and provide suitable solutions. To counter the issues that can be observed from the metrics evaluation, additional research will need to be conducted on how to better rework a convolutional neural network model to better learn and attempt to solve such a problem.
+
 \subsection{Model 3}
+
+\begin{verbatim}
+    model = Sequential([
+        Input(shape=(9, 9, 1)),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        BatchNormalization(),
+        Conv2D(512, (3, 3), activation='relu', padding='same'),
+        Flatten(),
+        Dropout(0.1),
+        Dense(9*9*9),
+        LayerNormalization(axis=-1),
+        Reshape((9,9,9)),
+        Activation("softmax")
+    ])
+\end{verbatim}
+
+\begin{verbatim}
+    model.compile(optimizer=Adam(learning_rate=0.001), 
+    loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+   reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, 
+    patience=3, min_lr=1e-6, verbose=1)
+   early_stopping = EarlyStopping(monitor='val_loss', patience=5, 
+    verbose=1, restore_best_weights=True)
+   # callbacks to try and reduce the probability of the CNN losing accuracy
+
+   model.fit(puzzles, solutions, epochs=3, batch_size=256, validation_split=0.2,
+    callbacks=[reduce_lr, early_stopping])
+\end{verbatim}
+
+\begin{figure}[ht]
+    \centering 
+    \begin{minipage}{1.1\textwidth} 
+        \includegraphics[width=\textwidth]{images/3rd model metrics.png} 
+        \caption{Evaluated Metrics of 3rd Model} 
+        \label{fig: Evaluated Metrics of 3rd Model} 
+    \end{minipage} 
+    \hfill 
+\end{figure}
+
 \subsection{Model 4}
+
+\begin{verbatim}
+    model = Sequential([
+        Input(shape=(9, 9, 1)), # takes in a 9x9 grid with only 1 channel
+        Conv2D(324, (3, 3), padding='same'),
+        LeakyReLU(negative_slope=0.1),
+        BatchNormalization(),
+        Conv2D(324, (3, 3), padding='same'),
+        LeakyReLU(negative_slope=0.1),
+        BatchNormalization(),
+        Conv2D(324, (3, 3), padding='same'),
+        LeakyReLU(negative_slope=0.1),
+        Flatten(),
+        Dense((9*9)*9),
+        # denses the neurons output into 81 (no of cells in solution) 
+        # ranges of values between 1-9 (constraint of the solution that 
+        # cells are between 1 and 9)
+        LayerNormalization(axis=-1),
+        # normalisation to stabalise and reduce overfitting
+        Reshape((9,9,9)),
+        # reshapes the condensed layer into a set of 9 columns, 9 rows 
+        # and an array sized 9 for each cell for the column and rows
+        Activation('softmax')
+        # this ensures that all output probability is normalised so that 
+        # all probabilities add up to 1, so that it is perfect for 
+        # classification
+    ])
+\end{verbatim}
+
+\begin{verbatim}
+    model.compile(optimizer=Adam(learning_rate=0.0001), 
+     loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, 
+     patience=3, min_lr=1e-6, verbose=1)
+    early_stopping = EarlyStopping(monitor='val_loss', patience=5, 
+     verbose=1, restore_best_weights=True)
+    # callbacks to try and reduce the probability of the CNN losing accuracy
+
+    model.fit(puzzles, solutions, epochs=5, batch_size=32, validation_split=0.2,
+     callbacks=[reduce_lr, early_stopping])
+\end{verbatim}
+
+\begin{figure}[ht]
+    \centering 
+    \begin{minipage}{1.1\textwidth} 
+        \includegraphics[width=\textwidth]{images/4th model metrics.png} 
+        \caption{Evaluated Metrics of 4th Model}
+        \label{fig: Evaluated Metrics of 4th Model} 
+    \end{minipage} 
+    \hfill 
+\end{figure}
+
 \subsection{Model 5}
+
+\begin{verbatim}
+    model = Sequential([
+        Input(shape=(9, 9, 1)), # takes in a 9x9 grid with only 1 channel
+        Conv2D(162, (5, 5), padding='same'),
+        LeakyReLU(negative_slope=0.1),
+        BatchNormalization(),
+        Conv2D(162, (5, 5), padding='same'),
+        LeakyReLU(negative_slope=0.1),
+        BatchNormalization(),
+        Conv2D(162, (5, 5), padding='same'),
+        LeakyReLU(negative_slope=0.1),
+        BatchNormalization(),
+        Conv2D(162, (5, 5), padding='same'),
+        LeakyReLU(negative_slope=0.1),
+        BatchNormalization(),
+        Conv2D(162, (5, 5), padding='same'),
+        LeakyReLU(negative_slope=0.1),
+        Flatten(),
+        Dense((9*9)*9),
+        # denses the neurons output into 81 (no of cells in solution) 
+        # ranges of values between 1-9 (constraint of the solution that 
+        # cells are between 1 and 9)
+        LayerNormalization(axis=-1),
+        # normalisation to stabalise and reduce overfitting
+        Reshape((9,9,9)),
+        # reshapes the condensed layer into a set of 9 columns, 9 rows 
+        # and an array sized 9 for each cell for the column and rows
+        Activation('softmax')
+        # this ensures that all output probability is normalised so that 
+        # all probabilities add up to 1, so that it is perfect for 
+        # classification
+    ])
+\end{verbatim}
+
+\begin{verbatim}
+    model.compile(optimizer=Adam(learning_rate=0.0001), 
+     loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, 
+     patience=3, min_lr=1e-6, verbose=1)
+    early_stopping = EarlyStopping(monitor='val_loss', patience=5, 
+     verbose=1, restore_best_weights=True)
+    # callbacks to try and reduce the probability of the CNN losing accuracy
+
+    model.fit(puzzles, solutions, epochs=10, batch_size=32, validation_split=0.2,
+     callbacks=[reduce_lr, early_stopping])
+\end{verbatim}
+
+\begin{figure}[ht]
+    \centering 
+    \begin{minipage}{1.0\textwidth} 
+        \includegraphics[width=\textwidth]{images/final model metrics.png} 
+        \caption{Evaluated Metrics of final Model}
+        \label{fig: Evaluated Metrics of final Model} 
+    \end{minipage} 
+    \hfill 
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%% Final Product
@@ -392,6 +665,8 @@ The project was divided in a way so that each file would have a specific purpose
 An agile type of methodology style was implemented in the development process of the AI sudoku solver as the primary focus of the term time development cycle was putting together rapidly developed features that is capable of doing just enough to get the application running and connecting them together to get a working prototype which is able to print and solve the puzzle in a way which is easily interpreted by the applications intended users. This style of development will be carried out in the next term of development also as it would be more important to focus on developing the key features of the application so that the prototype is able to meet the set aims and objectives of the project and only once these are achieved, improvements and updates can be made to the code base to improve the application incrementally until the final product has been formed. 
 
 \section{Running the Application}
+
+Setting up the environment to run the application is very straightforward, it requires that the following python packages are installed in order to be able to start up the program, which are: the pygame package, which can be installed with the “pip install pygame” command from the system terminal, and the tensorflow python package, whcih is similarly installed with the command “pip install tensorflow” from the system terminal. Once these packages are installed the application will be very simple to run as it is located in the folder called “product”, and the application uses the file named “main.py”, and running this file will open up and begin running the application. the link to a demonstration of the application being run and a walk through of the features can be found here: \href{https://}{Video Demonstration}
 
 When running the main application there 2 different sets of outputs are provided for the user to examine, the console displayed unsolved and solved sudoku puzzle and the pygame window in which the puzzle is displayed initially unsolved, and then shows the step by step procedures the solving algorithm takes to present the user with an actual solution. 
 
