@@ -291,7 +291,7 @@ This Artificial Intelligence model is implemented by separating the interconnect
 
 Convolutional Neural Networks are a specialised type of Neural Network which specialises in image classification, object detection, image segmentation, image generation and more, image classification being the identification of the category of the whole image, object detection being the detection of multiple objects within the image, image classification classifying each pixel in an image to a specific class and image generation works on creating images from scratch based on what it learned from training data. The reason why these types of tasks are better suited to a convolutional neural network is because of the CNN’s structure which uses many different types of layers, but most notably and importantly, uses convolutional layers. The other types of layers that can help a convolutional neural network achieve what it does are the pooling layers, normalisation layers, dropout layers, dense layers and flattened layers. These layers will be explained in more depth below: 
 
-\subsubsection{Conv2d}
+\subsubsection{Conv2D}
 
 Conv2d is the key part of a convolutional neural network, as this is the convolutional layer that serves as the basis of the network. The purpose of this layer is to extract features. To do this the layer makes use of filters called kernels to produce feature maps where each neuron on the next layer, calculated as the dot product of the area the filter covers on the inputted data,  is the output of the kernel and the combination of this neurons hold values that represent specific features, which aids in pattern recognition in the network. the use of filters allows for parameter sharing, where the same set of weights are applied throughout the input which is less computationally exhaustive for the machine and means less parameters are needed for the network to generalise better as filters cover multiple parts of the input as there is not a need for separate weights for each value in the inputted data due to the filters sharing these parameters in the feature maps. 
 
@@ -490,6 +490,8 @@ Unfortunately, the updated model was unable to overcome the underfitting issues 
 
 \subsection{Model 3}
 
+After a considerable amount of research, a study containing a solution of the problem being worked on was found and some of the solution found in the study was applied to the model used in the application to attempt to create a convolutional neural network that will provide a suitable prediction to a provided sudoku problem. 
+
 \begin{verbatim}
     model = Sequential([
         Input(shape=(9, 9, 1)),
@@ -512,10 +514,19 @@ Unfortunately, the updated model was unable to overcome the underfitting issues 
         Conv2D(512, (3, 3), activation='relu', padding='same'),
         Flatten(),
         Dropout(0.1),
-        Dense(9*9*9),
+        Dense((9*9)*9),
+        # denses the neurons output into 81 (no of cells in solution) 
+        # ranges of values between 1-9 (constraint of the solution that 
+        # cells are between 1 and 9)
         LayerNormalization(axis=-1),
+        # normalisation to stabalise and reduce overfitting
         Reshape((9,9,9)),
+        # reshapes the condensed layer into a set of 9 columns, 9 rows 
+        # and an array sized 9 for each cell for the column and rows
         Activation("softmax")
+        # this ensures that all output probability is normalised so that 
+        # all probabilities add up to 1, so that it is perfect for 
+        # classification
     ])
 \end{verbatim}
 
@@ -532,6 +543,9 @@ Unfortunately, the updated model was unable to overcome the underfitting issues 
     callbacks=[reduce_lr, early_stopping])
 \end{verbatim}
 
+Using the style of the 11th convolutional neural network model \cite{JacksonYu2025} to create a model for project application, the network was designed with 9 different convolutional layers that output 512 filter maps, all using a 3x3 filter size, but where it differs significantly from previous models in this report, the network outputs a very large matrix where each of the 81 cells in the sudoku problem is represented as their own individual classification matrix which contains values that represent how likely the cells solution will be the number that is the index containing the highest probability. And the network does this by condensing all the neurons into a matrix with the length 729 (matrix sized at 9 for each 81 cells, 9*81 = 729) reshaping the matrix and applying the softmax activation, which distributes probabilities within the matrix so that they all add to 1, therefore only one value in the matrix will be the index most probable to be the cell solution. This multi classification type output from the model can be better measured up against a categorical cross entropy loss function and therefore will be able to provide a much better accuracy and validation accuracy score, while simultaneously keeping the loss and validation loss low. However, due to the size of this network, it would take far too long to run the 5 epochs with the 64 sized batches as seen in the solution from the study, so adaptation to the model fitting has been made to use 3 epochs and a batch sizes of 256 in an attempt to reduce the computational costs of training.
+
+\clearpage
 \begin{figure}[ht]
     \centering 
     \begin{minipage}{1.1\textwidth} 
@@ -542,7 +556,11 @@ Unfortunately, the updated model was unable to overcome the underfitting issues 
     \hfill 
 \end{figure}
 
+Despite the significant improvements to the algorithm and very high accuracy and validation accuracy, along with low loss and validation loss, this model still produces some errors with its output, and to make any adjustments to the model to try and prevent this is far too computationally expensive as it takes 20543 seconds, which equates to around 5-6 hours per epoch which is way too long for most machines to spend on training, this makes any minor adjustments to the model’s design infeasible to test and therefore near impossible to improve without spending entire days on training the network, so the next stages of development needs to focus on maintaining this level of accuracy while significantly reducing the computational costs per epoch, so that improvements to the model can be made to try and reduce errors this model produces.
+
 \subsection{Model 4}
+
+Following the discovery of an accurate yet computationally infeasible convolutional neural network, the following changes has been made to the projects model in order to try and significantly reduce the computational costs on the machine training the neural network.
 
 \begin{verbatim}
     model = Sequential([
@@ -585,6 +603,8 @@ Unfortunately, the updated model was unable to overcome the underfitting issues 
      callbacks=[reduce_lr, early_stopping])
 \end{verbatim}
 
+This iteration of the convolutional neural network attempts to reduce the computational costs of the training phase of the model by reducing the number of convolutional layers the network uses, while also reducing the amount of filter maps each layer produces. This seems like it would work out bad for the convolutional neural network as this would affect how well the network can extract and learn key features and patterns, so to try and offset the potential loss of accuracy while making so many significant reductions to model calculations, changes to the learning rate has been made, reduced from 0.001 to 0.0001 which should help make more precise updates to the network parameters (weights and biases for each neuron), as well as switching the convolutional layers activation from regular ReLU to leaky ReLU so that the network will still benefit from the contribution of neurons even if their inputs are negative, which in the case of ReLU would've set the neuron to 0, thus making it inactive and no contributions would be made from that neuron. with these changes the model should be able to run 5 epochs this time using batch sizes of 32, without it costing too much development time.
+
 \begin{figure}[ht]
     \centering 
     \begin{minipage}{1.1\textwidth} 
@@ -595,7 +615,11 @@ Unfortunately, the updated model was unable to overcome the underfitting issues 
     \hfill 
 \end{figure}
 
+With this model, a very high degree of accuracy and validation accuracy has been achieved. But this model is still less accurate than the previous convolutional neural network, which means it makes more mistakes when attempting to predict a solution to a sudoku problem. Despite the slight decrease in accuracy, this model is still considered a step in the right direction as for this slight decrease in accuracy, a vast improvement of training time has been seen as each epoch only takes around 2893s which is around 50 minutes, less than an hour when compared to the extreme 5-6  hours being dealt with in the previous network!!, which shows a very significant computational cost reduction.
+
 \subsection{Model 5}
+
+Following the success of its predecessor, this model has been adapted to try and keep its relatively low computational costs while making progress in increasing the accuracy in the convolutional neural network's predictions.
 
 \begin{verbatim}
     model = Sequential([
@@ -644,15 +668,19 @@ Unfortunately, the updated model was unable to overcome the underfitting issues 
      callbacks=[reduce_lr, early_stopping])
 \end{verbatim}
 
+This final iteration of the convolutional neural network uses an increased 5 convolutional layers with a reduced 162 filter map output, but this time uses a 5x5 dimensional filter which will allow the network to capture more data in a larger space in context to the input, that can potentially result in detecting patterns on a bigger scale, which can have the positive affect of the model requiring less convolutional layers overall. This working in conjunction with the leaky ReLU activations should help to give higher accuracy and validation accuracies while keeping the loss and validation loss low while not increasing the training phase duration too significantly, because of the reduced amount of time the network needs per epoch, the number of epochs has been increased to 10 in an attempt to try and score the highest possible scores on the metric, so that the final convolutional neural network will hopefully make little to no mistakes when trying to make a prediction as to what it thinks the solution to the sudoku problem that is inputted into the model.
+
 \begin{figure}[ht]
     \centering 
-    \begin{minipage}{1.0\textwidth} 
+    \begin{minipage}{1.1\textwidth} 
         \includegraphics[width=\textwidth]{images/final model metrics.png} 
         \caption{Evaluated Metrics of final Model}
         \label{fig: Evaluated Metrics of final Model} 
     \end{minipage} 
     \hfill 
 \end{figure}
+
+This model has reached a very high scores in the metrics evaluation, showing a very high degree of accuracy, validation accuracy as well as lower levels of loss and validation loss. With this the convolutional neural network is able to calculate predictions to sudoku puzzles which contain very few errors, which makes it useful for my project as it can help to demonstrate just how effectively and efficiently machines can outperform humans at making fast and accurate calculations, which this convolutional neural network does fairly well despite its small degree of inaccuracy. However, with additional development time, the neural network could be further adapted to yield greater accuracy while potentially reducing computational costs per epoch, which is currently around 3827s which is roughly about an hour, through the use of better callback functions, which would be used to start off the training of model with a higher learning rate with larger batches which would speed up the speed it takes for the network to get through all the test data, but as the models accuracy begins to plateau or fall off, the call back would adjust these values so that in the later stages it will take longer and be more computationally expensive, but will allow for more precise adjustments to the convolutional neural networks parameters later, which could potentially give the same or greater results in much less time, as the earlier epochs are training much quicker.
 
 %%%%%%%%%%%%%%%%%%%%%%
 %%% Final Product
@@ -787,6 +815,8 @@ AI for Social Good (n.d.). Artificial Intelligence vs. Human Intelligence: Explo
 \bibitem{IBM2024} IBM, \textit{What is a Neural Network?}, IBM, 2024. Available at: \url{https://www.ibm.com/topics/neural-networks} 
 
 \bibitem{Schmidhuber2015} J. Schmidhuber, \textit{Deep Learning in Neural Networks: An Overview}, Neural Networks, vol. 61, pp. 85-117, 2015. Available at: \url{https://arxiv.org/abs/1404.7828}
+
+\bibitem{JacksonYu2025} J. Yu, \textit{Solving Sudoku with Convolutional Neural Networks}, GitHub repository, 2025. Available at: \url{https://github.com/JacksonYu92/Solving-Sudoku-with-Convolutional-Neural-Networks/blob/main/Sudoku_cnn.ipynb}
 
 \end{thebibliography}
 \label{endpage}
